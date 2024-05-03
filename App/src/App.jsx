@@ -9,7 +9,7 @@ import { addUsers, receivedChat, removeUser, setInitialUsers, setMySocketData, s
 
 
 
-export const socket=io.connect("http://localhost:3500/", { transports: ['websocket'] })
+export const socket=io.connect("https://real-time-chat-lav-kumar-yadavs-projects.vercel.app/", { transports: ['websocket'] })
 const App = () => {
   const dispatch = useDispatch();
   const selectedChatindex=useSelector(state=>state.chatReducer.selectedChatindex);

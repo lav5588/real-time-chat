@@ -4,8 +4,11 @@
   "type": "module",
   "description": "This is a server for Real time chat application",
   "main": "index.js",
+  "engines": {
+    "node": "20.x"
+  },
   "scripts": {
-    "dev": "nodemon ./src/index.js"
+    "dev": "node ./src/index.js"
   },
   "author": "LAV KUMAR YADAV",
   "license": "ISC",
