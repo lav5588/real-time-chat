@@ -14,20 +14,20 @@ const socketServerCreate=()=>{
         return {io,httpServer};
     }
     catch(err){
-        console.log(err);
+        // console.log(err);
     }
 }
 
 const socketConnectionHandler=(socket,io)=>{
-    console.log("A User connected");
+    // console.log("A User connected");
     socket.on("disconnect",()=>{
         removeUser(socket,io);
-        console.log('user disconnected', socket.id);
+        // console.log('user disconnected', socket.id);
     })
     socket.on("addUser",(username)=>{
         
         addUser(username,socket,io);
-        console.log('user added', socket.id);
+        // console.log('user added', socket.id);
     })
     
 

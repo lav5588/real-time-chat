@@ -16,10 +16,10 @@ const Header = () => {
     const [selectedUserName,setSelectedUserName]=useState("");
     
     useEffect(()=>{
-      console.log("useEffect called");
+      // console.log("useEffect called");
       if(selectedChatindex!==null && chats.length > 0){
         setSelectedUserName(chats[selectedChatindex]?.username || "");
-        console.log("selectedUserName: ",selectedUserName);
+        // console.log("selectedUserName: ",selectedUserName);
       }
     },[selectedChatindex])
     

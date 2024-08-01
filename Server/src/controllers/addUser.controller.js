@@ -12,12 +12,12 @@ const addUser=(username,socket,io)=>{
 
 
 
-        console.log(`${username} added successfully`)
+        // console.log(`${username} added successfully`)
         io.to(socket.id).emit("addUser",{message:`${username} added successfully`,socketIdAndName,newUser});
         io.except(socket.id).emit("addUser",newUser);
 
     } catch (error) {
-        console.log(error);
+        // console.log(error);
         io.to(socket.id).emit("error",error);
     }
 }

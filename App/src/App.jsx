@@ -32,7 +32,7 @@ const App = () => {
           dispatch(setInitialUsers(data.socketIdAndName));
         } else {
           dispatch(addUsers(data));
-          console.log(data);
+          // console.log(data);
         }
       });
 
@@ -42,7 +42,7 @@ const App = () => {
     try {
       socket.on("deleteUser", (socketId) => {
         dispatch(removeUser(socketId));
-        console.log("A user has been removed")
+        // console.log("A user has been removed")
         dispatch(setSelectedchatIdex(null));
       });
 
@@ -63,7 +63,7 @@ const App = () => {
 
   useEffect(() => {
     if (userName) {
-      console.log("userName: ", userName);
+      // console.log("userName: ", userName);
       socket.emit("addUser", userName);
     }
   }, [userName]);
