@@ -9,7 +9,7 @@
   },
   "scripts": {
     "build": "echo 'No build action required'",
-    "dev": "node ./src/index.js"
+    "dev": "nodemon ./src/index.js"
   },
   "author": "LAV KUMAR YADAV",
   "license": "ISC",

@@ -6,64 +6,70 @@ import { useDispatch, useSelector } from 'react-redux';
 import { io } from 'socket.io-client';
 import { addUsers, receivedChat, removeUser, setInitialUsers, setMySocketData, setSelectedchatIdex } from './components/Store/slices/ChatSlice';
 
-
-
-
-export const socket=io.connect(import.meta.env.BASE_URL, { transports: ['websocket'] })
+let socket;
+try {
+  (async() => {
+    socket =await io.connect(import.meta.env.VITE_BASE_URL, { transports: ['websocket'] })
+  })()
+}
+catch (e) {
+  console.error("Error connecting to the socket", e);
+}
+export { socket }
 const App = () => {
   const dispatch = useDispatch();
-  const selectedChatindex=useSelector(state=>state.chatReducer.selectedChatindex);
+  const selectedChatindex = useSelector(state => state.chatReducer.selectedChatindex);
   const [userName, setUserName] = useState("");
   useEffect(() => {
-    
-    
+
+
     try {
       socket.on("addUser", (data) => {
 
-          if(data.message){
-            
-            dispatch(setMySocketData(data.newUser));
-            dispatch(setInitialUsers(data.socketIdAndName));
-          }else{
-            dispatch(addUsers(data));
-            console.log(data);
-          }
-        });
-      
-  } catch (error) {
+        if (data.message) {
+
+          dispatch(setMySocketData(data.newUser));
+          dispatch(setInitialUsers(data.socketIdAndName));
+        } else {
+          dispatch(addUsers(data));
+          console.log(data);
+        }
+      });
+
+    } catch (error) {
       console.error("something went wrong during on event of addUser", error);
-  }
-  try {
-    socket.on("deleteUser", (socketId) => {
+    }
+    try {
+      socket.on("deleteUser", (socketId) => {
         dispatch(removeUser(socketId));
         console.log("A user has been removed")
         dispatch(setSelectedchatIdex(null));
       });
-    
-} catch (error) {
-    console.error("something went wrong during on event of removeUser", error);
-}
-try {
-  socket.on("chat-message",(data)=>{
-      dispatch(receivedChat(data));
-  })
-  
-} catch (error) {
-  console.error("something went wrong during on event of chatMessage", error);
-}
+
+    } catch (error) {
+      console.error("something went wrong during on event of removeUser", error);
+    }
+    try {
+      socket.on("chat-message", (data) => {
+        dispatch(receivedChat(data));
+      })
+
+    } catch (error) {
+      console.error("something went wrong during on event of chatMessage", error);
+    }
 
 
-  },[]);
+  }, []);
 
   useEffect(() => {
-    if(userName) {
+    if (userName) {
       console.log("userName: ", userName);
       socket.emit("addUser", userName);
     }
   }, [userName]);
 
 
-  
+
 
   if (!userName) {
     return (
@@ -87,16 +93,16 @@ try {
       <div className='flex-grow'>
         <Header />
         {
-          selectedChatindex==null ?
-          <div className="md:flex justify-center hidden items-center h-screen">
-            <h1 className="text-3xl text-center">
-              Welcome to Ichat Messaging Duniya 
-              <span role="img" aria-label="heart emoji"> ❤️❤️❤️❤️❤️</span>
-            </h1>
-          </div>
-          :<ChatSection />
+          selectedChatindex == null ?
+            <div className="md:flex justify-center hidden items-center h-screen">
+              <h1 className="text-3xl text-center">
+                Welcome to Ichat Messaging Duniya
+                <span role="img" aria-label="heart emoji"> ❤️❤️❤️❤️❤️</span>
+              </h1>
+            </div>
+            : <ChatSection />
         }
-        
+
 
       </div>
     </div>
