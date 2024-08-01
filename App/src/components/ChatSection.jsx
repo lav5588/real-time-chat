@@ -33,7 +33,6 @@ const ChatSection = () => {
 
     return (
         <div className="bg-gray-100 p-4 mb-20" >
-            <h1 className="text-xl font-bold mb-4">Chat Section</h1>
             <div className="flex flex-col space-y-4">
                 {messages?.map((chat, index) => (
                     <div key={index} className={`p-2 rounded ${chat.sender ===mySocketData.socketId? 'bg-blue-500 text-white self-end' : 'bg-gray-300 text-black self-start'}`}>
