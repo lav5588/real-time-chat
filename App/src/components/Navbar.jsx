@@ -113,6 +113,7 @@ const Navbar = () => {
         <input type="text" className='ml-2 rounded-lg p-2 text-black' onChange={handleSearch} placeholder='Search....'/>
         <div className="container mx-auto h-full overflow-y-auto">
           <ul>
+            {userData.length == 0 && <h1>No One Is Online Now !!! 😒😒</h1>}
             {userData.map((user,index) => (
               
               <li key={user.socketId} className="my-2 cursor-pointer" onClick={()=>dispatch(setSelectedchatIdex(index))}>

@@ -44,7 +44,7 @@ const ChatSection = () => {
                 ))}
             </div>
             <div className="flex mb-4 fixed bottom-2 left-5 md:left-72 right-5">
-                <input type="text" className="flex-grow border border-gray-300 rounded-l p-2 focus:outline-none" value={inputMessege} placeholder="Type your message..." onChange={(e)=>{setInputMessege(e.target.value.trim())}} onKeyDown={(e)=>{if(e.key=="Enter" && inputMessege) sendHandler()}}/>
+                <input type="text" className="flex-grow border border-gray-300 rounded-l p-2 focus:outline-none" value={inputMessege} placeholder="Type your message..." onChange={(e)=>{setInputMessege(e.target.value)}} onKeyDown={(e)=>{if(e.key=="Enter" && inputMessege) sendHandler()}}/>
                 <button className="bg-blue-500 text-white rounded-r px-4 py-2 ml-2" onClick={sendHandler}>Send</button>
             </div>
         </div>
